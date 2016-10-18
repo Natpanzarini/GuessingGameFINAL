@@ -45,7 +45,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="High score placeholder"
         android:id="@+id/textView2"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/button"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

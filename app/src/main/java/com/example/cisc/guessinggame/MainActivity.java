@@ -42,17 +42,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     @Override
     public void onClick(View v) {
+        //Play sample 1
+        soundPool.play(sample1, 1, 1, 0, 0, 1);
         Intent i;
         i = new Intent(this, GameActivity.class);
         startActivity(i);
-        switch (v.getId()) {
-            case R.id.button://when the first button is pressed
-                //Play sample 1
-                soundPool.play(sample1, 1, 1, 0, 0, 1);
-                break;
         }
     }
-}
