@@ -2,6 +2,7 @@ package com.example.cisc.guessinggame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
@@ -10,11 +11,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    String dataName = "MyData";
+    String intName = "MyString";
+    int defaultInt = 0;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    int hiScore = 0;
 
     private SoundPool soundPool;
     int sample1 = -1;
@@ -23,6 +32,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        prefs = getSharedPreferences(dataName,MODE_PRIVATE);
+        editor = prefs.edit();
+        hiScore = prefs.getInt(intName, defaultInt);
+
+        if(GameActivity.points > hiScore) {
+            hiScore = GameActivity.points;
+            editor.putInt(intName, hiScore);
+            editor.commit();
+            Toast.makeText(getApplicationContext(), "New Hi-score!!", Toast.LENGTH_LONG).show();
+        }else{
+
+        }
+
+        TextView textHighScore =(TextView) findViewById(R.id.textHighScore);
+        textHighScore.setText("High Score: "+ hiScore);
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
