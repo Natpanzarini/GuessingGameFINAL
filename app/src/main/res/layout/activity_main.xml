@@ -24,28 +24,18 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="HIGH SCORE:"
-        android:id="@+id/textView"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="75dp" />
+        android:id="@+id/textHighScore"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/dabbingemoji"
-        android:layout_above="@+id/textView"
+        android:layout_above="@+id/textHighScore"
         android:layout_centerHorizontal="true"
         android:layout_alignParentStart="false"
         android:layout_alignParentEnd="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="High score placeholder"
-        android:id="@+id/textView2"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -34,7 +34,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     int answerGiven;
     int currentLevel = 1;
     int totalGuesses = 1;
-    int points = 0;
+
+    public static int points = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         button3.setOnClickListener(this);
 
         textScore =(TextView) findViewById(R.id.textScore);
+        textScore.setText("Score: " + points);
     }
 
     @Override
@@ -63,16 +65,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 answerGiven = Integer.parseInt("" + button1.getText());
                 if (answerGiven == ourRandom)
                 {
-                    //button1.startAnimation(wobble);
+                    button1.startAnimation(wobble);
                     Toast.makeText(getApplicationContext(), "Well Done!",Toast.LENGTH_SHORT).show();
                     updateScoreAndLevel(totalGuesses);
-                    totalGuesses++;
                     Intent i;
                     i = new Intent(this, GameActivity2.class);
                     startActivity(i);
                 } else
                 {
-                    button1.startAnimation(wobble);
                     Toast.makeText(getApplicationContext(), "Sorry, incorrect", Toast.LENGTH_SHORT).show();
                     totalGuesses++;
                     button1.setVisibility(View.INVISIBLE);
@@ -83,16 +83,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 answerGiven = Integer.parseInt("" + button2.getText());
                 if(answerGiven==ourRandom)
                 {
-                    //button2.startAnimation(wobble);
+                    button2.startAnimation(wobble);
                     Toast.makeText(getApplicationContext(), "Well done!", Toast.LENGTH_SHORT).show();
                     updateScoreAndLevel(totalGuesses);
-                    totalGuesses++;
                     Intent i;
                     i = new Intent(this, GameActivity2.class);
                     startActivity(i);
                 }else
                 {
-                    button2.startAnimation(wobble);
                     Toast.makeText(getApplicationContext(),"Sorry that's wrong", Toast.LENGTH_SHORT).show();
                     totalGuesses++;
                     button2.setVisibility(View.INVISIBLE);
@@ -106,13 +104,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     button3.startAnimation(wobble);
                     Toast.makeText(getApplicationContext(), "Well done!", Toast.LENGTH_SHORT).show();
                     updateScoreAndLevel(totalGuesses);
-                    totalGuesses++;
                     Intent i;
                     i = new Intent(this, GameActivity2.class);
                     startActivity(i);
                 }else
                 {
-                    button3.startAnimation(wobble);
                     Toast.makeText(getApplicationContext(),"Sorry that's wrong", Toast.LENGTH_SHORT).show();
                     totalGuesses++;
                     button3.setVisibility(View.INVISIBLE);
@@ -136,20 +132,5 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             points++;
             textScore.setText("Score: " + points);
         }
-
-        textLevel.setText("Level: " + currentLevel);
-    }
-
-    boolean isCorrect(int answerGiven)
-    {
-        boolean correctTrueOrFalse;
-        if(answerGiven == correctAnswer)
-        {//YAY!
-            correctTrueOrFalse=true;
-        }else
-        {//Uh-oh!
-            correctTrueOrFalse=false;
-        }
-        return correctTrueOrFalse;
     }
 }
