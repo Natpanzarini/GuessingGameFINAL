@@ -24,18 +24,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     int hiScore = 0;
+    TextView textScore;
 
-    private SoundPool soundPool;
-    int sample1 = -1;
+        private SoundPool soundPool;
+        int sample1 = -1;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
-        prefs = getSharedPreferences(dataName,MODE_PRIVATE);
-        editor = prefs.edit();
-        hiScore = prefs.getInt(intName, defaultInt);
+            prefs = getSharedPreferences(dataName,MODE_PRIVATE);
+            editor = prefs.edit();
+            hiScore = prefs.getInt(intName, defaultInt);
 
         if(GameActivity.points > hiScore) {
             hiScore = GameActivity.points;
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editor.commit();
             Toast.makeText(getApplicationContext(), "New Hi-score!!", Toast.LENGTH_LONG).show();
         }else{
-
+            textScore =(TextView) findViewById(R.id.textScore);
+            textScore.setText("Score: " + GameActivity.points);
         }
 
         TextView textHighScore =(TextView) findViewById(R.id.textHighScore);

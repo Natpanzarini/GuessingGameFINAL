@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     int answerGiven;
     int currentLevel = 1;
     int totalGuesses = 1;
+    int resetScore = 0;
 
     public static int points = 0;
 
@@ -41,6 +42,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        resetGameScore();
 
         wobble = AnimationUtils.loadAnimation(this, R.anim.wobble);
 
@@ -54,6 +57,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         textScore =(TextView) findViewById(R.id.textScore);
         textScore.setText("Score: " + points);
+
+
+
+
     }
 
     @Override
@@ -132,5 +139,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             points++;
             textScore.setText("Score: " + points);
         }
+    }
+    int resetGameScore(){
+        points = resetScore;
+        return points;
     }
 }
